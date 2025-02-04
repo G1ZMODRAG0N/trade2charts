@@ -21,10 +21,7 @@ Description = "Save File"}
 
 
 #Import the module PScriboCharts
-'.\modules*' | gci -include '*.psm1', '*.ps1' | Import-Module
-
-#set path
-$Path = '.\'
+'.\modules*' | Get-ChildItem -include '*.psm1', '*.ps1' | Import-Module
 
 $csvFormat = @("Action","Current Price","Date","Direction","Enter/Exit","Quantity","Sent Price","Slip from TV","Symbol","Time")
 
@@ -39,7 +36,7 @@ $fileSelect = $fileBrowser.ShowDialog()
     Write-host "The file selected is not a .csv filetype. Press ENTER to continue. Press Ctrl+C to exit."
     Read-host
     continue
-    } elseif((Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $fileBrowser.FileName | Get-Member -MemberType NoteProperty).Name) -ne $null){
+    } elseif($null -ne (Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $fileBrowser.FileName | Get-Member -MemberType NoteProperty).Name)){
     Write-Host "The .csv file selected has an incorrect header format, Headers must include the following:[" $csvFormat "]Press ENTER to continue. Press Ctrl+C to exit."
     Read-Host
     continue
@@ -53,9 +50,6 @@ $fileSelect = $fileBrowser.ShowDialog()
 
 #data csv
 $csvData = Import-Csv -Path $fileBrowser.FileName
-
-#title
-$csvTitle = Get-ChildItem -Path $Path -Filter *.csv -Name 
 
 #symbol json
 $symbolList = Get-Content -Path '.\symbols.json' | ConvertFrom-Json
@@ -212,3 +206,5 @@ if ($PassThru)
 {
     Write-Output -InputObject $chartFileItem
 }
+
+Start-Process $folderBrowser.SelectedPath
