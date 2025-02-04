@@ -52,7 +52,7 @@ $fileSelect = $fileBrowser.ShowDialog()
 $csvData = Import-Csv -Path $fileBrowser.FileName
 
 #symbol json
-$symbolList = Get-Content -Path '.\symbols.json' | ConvertFrom-Json
+$symbolList = Get-Content -Path '..\data\symbols.json' | ConvertFrom-Json
 
 #MATH SECTION
 $csvCount = $csvData.Count
