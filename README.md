@@ -1,6 +1,6 @@
 # trade2charts
 
-A quick tool that utilizes iainbrighton's [PScribo](http://github.com/iainbrighton/PScribo) to chart and convert trade .csv files to a readable format
+A quick tool that utilizes iainbrighton's [PScriboCharts](https://github.com/iainbrighton/PScriboCharts) to chart and convert trade .csv files to a readable format
 
 Requires __Powershell 3.0__ or later.
 

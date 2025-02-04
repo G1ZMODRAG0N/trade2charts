@@ -187,11 +187,11 @@ $addChartSeriesParams = @{
     ChartArea = $tradeChartArea
     Name      = 'tradeChartSeries'
     XField    = 'tradeNumber'
-    YField    = 'pnl'
+    YField    = 'total'
     ColorPerDataPoint = $true
     CustomPalette     = $tradeCustomPalette
 }
-$convertedTrade | Add-LineChartSeries @addChartSeriesParams
+$convertedTrade | Add-spLineChartSeries @addChartSeriesParams
 
 <#
     Export the chart to a .png (by default) file.
