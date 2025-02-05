@@ -82,7 +82,7 @@ for ($i = 0; $i -lt $csvCount; $i++) {
     #only perform data conversion on entry trades
     if (($entryTrade | Select-Object -ExpandProperty 'Enter/Exit') -eq 'entry') {
 
-        #trade number
+        #trade number g
         $tradeNumber = $tradeNumber + 1
 
         #symbol
