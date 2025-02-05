@@ -76,7 +76,7 @@ for ($i = 0; $i -lt $csvCount; $i++) {
     #progress bar
     $percentageComplete = $i / $csvCount * 100
     Write-Progress -Activity "Converting "$fileBrowser.SafeFileName -PercentComplete $percentageComplete
-    #entry / exit trade data
+    #entry/exit trade data
     $entryTrade = $csvData[$i]
     $exitTrade = $csvData[$i + 1]
     #only perform data conversion on entry trades
