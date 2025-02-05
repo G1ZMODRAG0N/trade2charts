@@ -1,8 +1,9 @@
 ####NOTES####
-#title reflection of the import csv itself
-#png is just fine
-#bulk ie 5 in 5 out
-
+<#
+bulk ie 5 in 5 out
+#>
+#
+#
 #load windows forms
 Add-Type -AssemblyName System.Windows.Forms
 
@@ -17,12 +18,12 @@ Filter = 'Comma-seperated values (*.csv)|*.csv'
 
 #folder select dialog
 $folderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
-Description = "Save File"}
+Description = "Select save file location:"}
 
 
 #Import the module PScriboCharts
-'.\modules*' | Get-ChildItem -include '*.psm1', '*.ps1' | Import-Module
-
+'..\modules\PScriboCharts\0.9.0\PScriboCharts.psd1' | Import-Module
+#format for csv header check
 $csvFormat = @("Action","Current Price","Date","Direction","Enter/Exit","Quantity","Sent Price","Slip from TV","Symbol","Time")
 
 #user input
@@ -33,18 +34,18 @@ $fileSelect = $fileBrowser.ShowDialog()
     Write-Host "Cancelling..."
     return
     } elseif($fileBrowser.FileName -notmatch ".csv"){
-    Write-host "The file selected is not a .csv filetype. Press ENTER to continue. Press Ctrl+C to exit."
+    Write-host "The file selected is not a .csv filetype. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
     Read-host
     continue
     } elseif($null -ne (Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $fileBrowser.FileName | Get-Member -MemberType NoteProperty).Name)){
-    Write-Host "The .csv file selected has an incorrect header format, Headers must include the following:[" $csvFormat "]Press ENTER to continue. Press Ctrl+C to exit."
+    Write-Host "The .csv file selected has an incorrect header format, Headers must include the following:[" $csvFormat "]Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
     Read-Host
     continue
     }else {
-    Write-Host "Converting..."
+    Write-Host "Converting..." -ForegroundColor Green
     break
     }
-    Write-Host "Error. Please try again. Press ENTER to continue. Press Ctrl+C to exit."
+    Write-Host "Error. Please try again. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
     Read-Host
 }
 
@@ -153,7 +154,7 @@ $addChartAreaParams = @{
     AxisYLabelFont        = $customLabelFont
     AxisXLabelMinFontSize = 12
     AxisYLabelMinFontSize = 12
-    #NoAxisXMajorGridLines = $true
+    NoAxisXMajorGridLines = $true
     #NoAxisYMajorGridLines = $true
 }
 $tradeChartArea = Add-ChartArea @addChartAreaParams -PassThru
@@ -170,15 +171,8 @@ Add-ChartTitle @addChartTitleParams
 
 #custom palette parameters
 $tradeCustomPalette = @(
-    [System.Drawing.ColorTranslator]::FromHtml('#6741D9')
-    [System.Drawing.ColorTranslator]::FromHtml('#9C36B5')
-    [System.Drawing.ColorTranslator]::FromHtml('#C2255C')
-    [System.Drawing.ColorTranslator]::FromHtml('#E03130')
-    [System.Drawing.ColorTranslator]::FromHtml('#E8580B')
-    [System.Drawing.ColorTranslator]::FromHtml('#F08C00')
-    [System.Drawing.ColorTranslator]::FromHtml('#2F9E44')
-    [System.Drawing.ColorTranslator]::FromHtml('#1B6EC2')
-    [System.Drawing.ColorTranslator]::FromHtml('#343A40')
+    [System.Drawing.ColorTranslator]::FromHtml('#008cd6')
+    [System.Drawing.ColorTranslator]::FromHtml('#009aeb')
 )
 
 #series parameters
@@ -188,10 +182,11 @@ $addChartSeriesParams = @{
     Name      = 'tradeChartSeries'
     XField    = 'tradeNumber'
     YField    = 'total'
+    Label             = ''
     ColorPerDataPoint = $true
     CustomPalette     = $tradeCustomPalette
 }
-$convertedTrade | Add-spLineChartSeries @addChartSeriesParams
+$convertedTrade | Add-LineChartSeries @addChartSeriesParams
 
 <#
     Export the chart to a .png (by default) file.
