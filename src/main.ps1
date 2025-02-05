@@ -9,8 +9,8 @@ Add-Type -AssemblyName System.Windows.Forms
 
 #file select dialog
 $fileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{ 
-InitialDirectory = [Environment]::GetFolderPath('MyComputer') 
-Filter = 'Comma-seperated values (*.csv)|*.csv'
+    InitialDirectory = [Environment]::GetFolderPath('MyComputer') 
+    Filter           = 'Comma-seperated values (*.csv)|*.csv'
 }
 
 #save select dialog
@@ -18,34 +18,43 @@ Filter = 'Comma-seperated values (*.csv)|*.csv'
 
 #folder select dialog
 $folderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
-Description = "Select save file location:"}
+    Description = "Select save file location:"
+}
 
 
 #Import the module PScriboCharts
 '..\modules\PScriboCharts\0.9.0\PScriboCharts.psd1' | Import-Module
 #format for csv header check
-$csvFormat = @("Action","Current Price","Date","Direction","Enter/Exit","Quantity","Sent Price","Slip from TV","Symbol","Time")
+$csvFormat = @("Action", "Current Price", "Date", "Direction", "Enter/Exit", "Quantity", "Sent Price", "Slip from TV", "Symbol", "Time")
 
 #user input
 while ($true) {
-Write-Host "Please select a .csv file:"
-$fileSelect = $fileBrowser.ShowDialog()
-    if($fileSelect -eq "Cancel"){
-    Write-Host "Cancelling..."
-    return
-    } elseif($fileBrowser.FileName -notmatch ".csv"){
-    Write-host "The file selected is not a .csv filetype. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
-    Read-host
-    continue
-    } elseif($null -ne (Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $fileBrowser.FileName | Get-Member -MemberType NoteProperty).Name)){
-    Write-Host "The .csv file selected has an incorrect header format, Headers must include the following:[" $csvFormat "]Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
-    Read-Host
-    continue
-    }else {
-    Write-Host "Converting..." -ForegroundColor Green
-    break
+    Write-Host "Please select a .csv file:"
+
+    $fileSelect = $fileBrowser.ShowDialog()
+    if ($fileSelect -eq "Cancel") {
+        Write-Host "Cancelling..."
+    
+        return
+    }
+    elseif ($fileBrowser.FileName -notmatch ".csv") {
+        Write-Host "The file selected is not a .csv filetype. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
+    
+        Read-host
+        continue
+    }
+    elseif ($null -ne (Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $fileBrowser.FileName | Get-Member -MemberType NoteProperty).Name)) {
+        Write-Host "The .csv file selected has an incorrect header format, Headers must include the following:[" $csvFormat "]Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
+    
+        Read-Host
+        continue
+    }
+    else {
+        Write-Host "File accepted..." -ForegroundColor Green
+        break
     }
     Write-Host "Error. Please try again. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
+    
     Read-Host
 }
 
@@ -64,8 +73,13 @@ $total = 0
 
 #$csvConvert
 for ($i = 0; $i -lt $csvCount; $i++) {
+    #progress bar
+    $percentageComplete = $i / $csvCount * 100
+    Write-Progress -Activity "Converting "$fileBrowser.SafeFileName -PercentComplete $percentageComplete
+    #entry / exit trade data
     $entryTrade = $csvData[$i]
     $exitTrade = $csvData[$i + 1]
+    #only perform data conversion on entry trades
     if (($entryTrade | Select-Object -ExpandProperty 'Enter/Exit') -eq 'entry') {
 
         #trade number
@@ -111,7 +125,7 @@ for ($i = 0; $i -lt $csvCount; $i++) {
         $duration = ([datetime]$soldDate + $soldTime).Subtract(([datetime]$boughtDate + $boughtTime))
         $durationFormatted = ([string]$duration.Days + "day(s)" + [string]$duration.Hours + "hr(s)" + [string]$duration.Minutes + "min(s)" + [string]$duration.Seconds + "sec(s)")
         
-
+        #add converted data to object
         $convertedTrade += [PSCustomObject]@{
             tradeNumber     = $tradeNumber.ToString()
             symbol          = $symbol.ToString()
@@ -131,14 +145,17 @@ for ($i = 0; $i -lt $csvCount; $i++) {
         #Write-Host "Exit trade skipped"
     }
 }
+#percentage completion 100 at end of loop
+Write-Progress -Activity "Converting "$fileBrowser.SafeFileName -PercentComplete 100
+Write-Host "COMPLETE" -ForegroundColor Green
 
-$convertedTrade #| Out-GridView
+#$convertedTrade | Out-GridView
 
-##CHARTING
+####CHARTING####
 
 #Creates a new chart. The name given to the chart is used when exporting the graphic.
-$tradeChart = New-Chart -Name $fileBrowser.SafeFileName.replace(".csv","_chart") -Width 1920 -Height 1080
-
+$tradeChart = New-Chart -Name $fileBrowser.SafeFileName.replace(".csv", "_chart") -Width 1920 -Height 1080
+#cystom fonts
 $customLabelFont = New-ChartFont -Name 'Arial' -Size 16
 $customTitleFont = New-ChartFont -Name 'Arial' -Size 16 -Bold
 
@@ -164,7 +181,7 @@ $addChartTitleParams = @{
     Chart     = $tradeChart
     ChartArea = $tradeChartArea
     Name      = 'trade title'
-    Text      = $fileBrowser.SafeFileName.replace(".csv","")
+    Text      = $fileBrowser.SafeFileName.replace(".csv", "")
     Font      = New-Object -TypeName 'System.Drawing.Font' -ArgumentList @('Arial', '16', [System.Drawing.FontStyle]::Bold)
 }
 Add-ChartTitle @addChartTitleParams
@@ -177,29 +194,38 @@ $tradeCustomPalette = @(
 
 #series parameters
 $addChartSeriesParams = @{
-    Chart     = $tradeChart
-    ChartArea = $tradeChartArea
-    Name      = 'tradeChartSeries'
-    XField    = 'tradeNumber'
-    YField    = 'total'
+    Chart             = $tradeChart
+    ChartArea         = $tradeChartArea
+    Name              = 'tradeChartSeries'
+    XField            = 'tradeNumber'
+    YField            = 'total'
     Label             = ''
     ColorPerDataPoint = $true
     CustomPalette     = $tradeCustomPalette
 }
 $convertedTrade | Add-LineChartSeries @addChartSeriesParams
 
-<#
-    Export the chart to a .png (by default) file.
-#>
-
+Write-Host "Please select your export location:" -ForegroundColor Green
+#show export location selection window
 $folderBrowser.ShowDialog()
-
-$chartFileItem = Export-Chart -Chart $tradeChart -Path $folderBrowser.SelectedPath -Format "png" -PassThru
-$convertedTrade | Export-Csv -NoTypeInformation -Path ($folderBrowser.SelectedPath+"\"+$fileBrowser.SafeFileName.replace(".csv","")+"_converted.csv").ToString() -Delimiter ","
-
-if ($PassThru)
-{
+#export to output location as csv and png
+try {
+    $chartFileItem = Export-Chart -Chart $tradeChart -Path $folderBrowser.SelectedPath -Format "png" -PassThru
+}
+catch {
+    Write-Host "Failed to export to location..." $folderBrowser.SelectedPath -ForegroundColor Red
+    return
+}
+try {
+    $convertedTrade | Export-Csv -NoTypeInformation -Path ($folderBrowser.SelectedPath + "\" + $fileBrowser.SafeFileName.replace(".csv", "") + "_converted.csv").ToString() -Delimiter ","
+}
+catch {
+    Write-Host "Failed to export to location..." $folderBrowser.SelectedPath -ForegroundColor Red
+    return
+}
+#pass thru pipe
+if ($PassThru) {
     Write-Output -InputObject $chartFileItem
 }
-
+#open output folder in explorer
 Start-Process $folderBrowser.SelectedPath
