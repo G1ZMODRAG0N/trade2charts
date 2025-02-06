@@ -47,23 +47,54 @@ while ($true) {
         continue
     }
     else {
-        Write-Host "File accepted..." -ForegroundColor Green
         break
     }
     Write-Host "Error. Please try again. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
     Read-Host
 }
 
+#csv cleaning
+#reassign readonly values of fileBrowser
+$filePaths = [System.Collections.ArrayList]@($fileBrowser.FileNames)
+$fileNames = $fileBrowser.SafeFileNames
+$errorFiles = @()
+#check all csv files for empty data
+for($i=0;$i -lt $filePaths.Count; $i++){
+    Write-Host "Checking data..." $fileNames[$i] -NoNewline
+    Write-Host
+    $importFile = Import-Csv -Path $filePaths[$i]
+    if($importFile.Symbol -eq ""){
+        Write-host "Error with file >>>>" $fileNames[$i] -ForegroundColor Red
+        Start-Sleep -Milliseconds 2000
+        #add to error files
+        $errorFiles+= $fileNames[$i]
+        #remove from filepaths
+        $filePaths.Remove($filePAths[$i])
+        
+    }
+}
+#if there are no files left to process stop
+if($filePaths.Count -eq 0){
+    Write-Host "The file(s) provided contained no data:" -ForegroundColor Red
+    $errorFiles | ForEach-Object {Write-host $_ -ForegroundColor Red}
+    Write-Host "There are no other files to process. Exiting..." -ForegroundColor Red
+    Start-Sleep -Milliseconds 2000
+    return
+} else {
+    Write-Host "File(s) accepted..." -ForegroundColor Green
+}
+
 #set output object
 $outputCSVs = @()
 $outputCharts = @()
 ##run function
-for ($i = 0; $i -lt $fileBrowser.FileNames.Count; $i++) {
+for ($i = 0; $i -lt $filePaths.Count; $i++) {
     #set file paths
-    $filePath = $fileBrowser.FileNames[$i]
+    $filePath = $filePaths[$i]
     #set file name
-    $fileName = $fileBrowser.SafeFileNames[$i]
+    $fileName = $fileNames[$i]
     #output csvs
+    Write-Host "Converting:" $filePath $fileName
     $outputCSVs += [PSCustomObject]@(Start-csvConversion -filePath $filePath -fileName $fileName)
     #output charts
     $outputCharts += [PSCustomObject]@(Start-csvLineChart -fileName $fileName -convertedTrade $outputCSVs[$i]) 
@@ -71,7 +102,7 @@ for ($i = 0; $i -lt $fileBrowser.FileNames.Count; $i++) {
 #sort output csvs
 $outputCSVs | Sort-Object -Property 'tradeNumber'
 
-Write-Host "Please select your export location:" -ForegroundColor Green
+Write-Host "Please select your export location:"
 #show export location selection window
 $folderBrowser.ShowDialog((New-Object System.Windows.Forms.Form -Property @{TopMost = $true }))
 #export to output location as csv and png
@@ -86,13 +117,19 @@ catch {
     return
 }
 try {
-    for ($i = 0; $i -lt $fileBrowser.FileNames.Count; $i++) {
+    for ($i = 0; $i -lt $filePaths.Count; $i++) {
         $outputCSVs[$i] | Export-Csv -NoTypeInformation -Path ($folderBrowser.SelectedPath + "\" + $fileBrowser.SafeFileNames[$i].replace(".csv", "") + "_converted.csv").ToString() -Delimiter ","
     }
 }
 catch {
     Write-Host "Failed to export csv(s) to location..." $folderBrowser.SelectedPath -ForegroundColor Red
     return
+}
+#feedback of failed files
+if($errorFiles.Count -ne 0){
+    Write-Host "The following items failed to process due to missing data:" -ForegroundColor Red
+    $errorFiles | ForEach-Object {Write-Host ">>>>"$_ -ForegroundColor Red}
+    Start-Sleep -Milliseconds 3000
 }
 #open output folder in explorer
 Start-Process $folderBrowser.SelectedPath

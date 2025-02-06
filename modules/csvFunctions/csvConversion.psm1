@@ -9,7 +9,13 @@ function Start-csvConversion {
     $symbolList = Get-Content -Path '..\data\symbols.json' | ConvertFrom-Json
 
     #data csv
+    Write-Host "Importing:" $filePath
     $csvData = Import-Csv -Path $filePath
+    #if data is empty skip
+    if($null -eq $csvData -or $csvData -eq ""){
+        Write-Host "No data provided...skipping: " $fileName
+        return
+    }
     $tradeNumber = 0
     $convertedTrade = @()
     $total = 0
