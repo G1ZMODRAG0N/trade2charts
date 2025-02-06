@@ -1,149 +1,574 @@
 {
-    "BCH": {
-        "tickValue": 0.05,
-        "valuePer": 1.00
+    "GC": {
+        "tickValue": 0.10,
+        "valuePer": 10.0
     },
-    "DOG": 0.00001,
-    "LC": 0.01,
-    "EC6E": 0.00005,
-    "ECBTC": 5,
-    "ECCL": 0.01,
-    "ECES": 0.25,
-    "ECGC": 0.1,
-    "ECHG": 0.0005,
-    "ECNG": 0.001,
-    "ECNQ": 0.25,
-    "ECRTY": 0.1,
-    "ECSI": 0.005,
-    "ECYM": 1.0,
-    "M2K": 0.1,
-    "MES": 0.25,
-    "MMC": 0.1,
-    "MNK": 5,
-    "MNQ": 0.25,
-    "MSC": 0.1,
-    "MYM": 1.0,
+    "MGC": {
+        "tickValue": 0.10,
+        "valuePer": 1.0
+    },
+    "SI": {
+        "tickValue": 0.005,
+        "valuePer": 25.0
+    },
+    "SIL": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "PL": {
+        "tickValue": 0.10,
+        "valuePer": 5.0
+    },
+    "PA": {
+        "tickValue": 0.05,
+        "valuePer": 5.0
+    },
+    "HG": {
+        "tickValue": 0.05,
+        "valuePer": 12.5
+    },
+    "HRC": {
+        "tickValue": 1.0,
+        "valuePer": 20.0
+    },
+    "SCO": {
+        "tickValue": 0.01,
+        "valuePer": 1.0
+    },
+    "CL": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "QM": {
+        "tickValue": 0.025,
+        "valuePer": 12.5
+    },
+    "BZ": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "HO": {
+        "tickValue": 0.01,
+        "valuePer": 4.2
+    },
+    "RB": {
+        "tickValue": 0.01,
+        "valuePer": 4.2
+    },
+    "NG": {
+        "tickValue": 0.001,
+        "valuePer": 10.0
+    },
+    "QG": {
+        "tickValue": 0.005,
+        "valuePer": 12.5
+    },
+    "EH": {
+        "tickValue": 0.001,
+        "valuePer": 29.0
+    },
+    "YM": {
+        "tickValue": 1.00,
+        "valuePer": 5.00
+    },
     "ES": {
         "tickValue": 0.25,
         "valuePer": 12.50
+    },
+    "MES": {
+        "tickValue": 0.25,
+        "valuePer": 1.25
     },
     "NQ": {
         "tickValue": 0.25,
         "valuePer": 5.00
     },
-    "RTY": 0.1,
-    "YM": 1.0,
-    "B5": 0.01,
-    "BIT": 5,
-    "BTC": 5,
-    "BTI": 5,
-    "EMD": 0.1,
-    "ET": 0.5,
-    "ETH": 0.5,
-    "ETI": 0.5,
-    "EWF": 0.5,
-    "FDAX": 1.0,
-    "FDXM": 1.0,
-    "FDXS": 1.0,
-    "FESX": 1.0,
-    "FSXE": 0.5,
-    "FVS": 0.05,
-    "FXXP": 0.1,
-    "LB5": 0.1,
-    "LTEC": 0.1,
-    "MBT": 5,
-    "MET": 0.5,
-    "MFS": 0.1,
-    "MME": 0.1,
-    "NKD": 5,
-    "SPK": 0.01,
-    "SR1": 0.0025,
-    "TEC": 0.01,
-    "BZ": 0.01,
-    "CL": 0.01,
-    "HO": 0.0001,
-    "MCL": 0.01,
-    "MNG": 0.001,
-    "NG": 0.001,
-    "NOL": 0.01,
-    "QG": 0.005,
-    "QH": 0.001,
-    "QM": 0.025,
-    "RB": 0.0001,
-    "6A": 0.00005,
-    "6B": 0.0001,
-    "6C": 0.00005,
-    "6E": 0.00005,
-    "6J": 0.0000005,
-    "6L": 0.00005,
-    "6M": 0.00001,
-    "6N": 0.00005,
-    "6S": 0.00005,
-    "DX": 0.005,
-    "E7": 0.0001,
-    "J7": 0.000001,
-    "M6A": 0.0001,
-    "M6B": 0.0001,
-    "M6E": 0.0001,
-    "MCD": 0.0001,
-    "MJY": 0.000001,
-    "MSF": 0.0001,
-    "10Y": 0.001,
-    "2YY": 0.001,
-    "30Y": 0.001,
-    "5YY": 0.001,
-    "FGBL": 0.01,
-    "FGBM": 0.01,
-    "FGBS": 0.005,
-    "FGBX": 0.02,
-    "GE": 0.0025,
-    "MTN": "01/64.0",
-    "MWN": "01/32.0",
-    "TN": "005/32.0",
-    "TWE": "01/32.0",
-    "UB": "01/32.0",
-    "Z3N": "0005/128.0",
-    "ZB": "01/32.0",
-    "ZF": "003/32.0",
-    "ZN": "005/32.0",
-    "ZQ": 0.003,
-    "ZT": "001/32.0",
-    "1OZ": 0.25,
-    "GC": {
-        "tickValue": 0.1,
+    "MNQ": {
+        "tickValue": 0.25,
+        "valuePer": 0.50
+    },
+    "RTY": {
+        "tickValue": 0.10,
+        "valuePer": 5.00
+    },
+    "M2K": {
+        "tickValue": 0.10,
+        "valuePer": 0.50
+    },
+    "EMD": {
+        "tickValue": 0.10,
         "valuePer": 10.00
     },
-    "GOL": 0.1,
-    "HG": 0.0005,
-    "MGC": 0.1,
-    "MHG": 0.0005,
-    "PA": 0.5,
-    "PL": 0.1,
-    "QC": 0.002,
-    "QI": 0.0125,
-    "QO": 0.25,
-    "SI": 0.005,
-    "SIL": 0.005,
-    "YG": 0.1,
-    "YI": 0.001,
-    "XC": "1/8.0",
-    "XK": "1/8.0",
-    "XW": "1/8.0",
-    "ZC": "2/8.0",
-    "ZL": 0.01,
-    "ZM": 0.1,
-    "ZO": "1/4.0",
-    "ZR": 0.005,
-    "ZS": "2/8.0",
-    "ZW": "",
-    "GF": 0.025,
-    "HE": 0.025,
-    "LE": 0.025,
-    "CC": 1,
-    "CT": 0.01,
-    "KC": 0.05,
-    "LBR": 0.5,
-    "LBS": 0.1,
-    "OJ": 0.05,
-    "SB": 0.01
+    "SXF": {
+        "tickValue": 0.10,
+        "valuePer": 20.00
+    },
+    "VX": {
+        "tickValue": 0.05,
+        "valuePer": 50.00
+    },
+    "FNG": {
+        "tickValue": 0.10,
+        "valuePer": 5.00
+    },
+    "MME": {
+        "tickValue": 0.10,
+        "valuePer": 50.00
+    },
+    "MFS": {
+        "tickValue": 0.10,
+        "valuePer": 50.00
+    },
+    "FDX": {
+        "tickValue": 0.50,
+        "valuePer": 12.50
+    },
+    "FDXM": {
+        "tickValue": 1.00,
+        "valuePer": 5.00
+    },
+    "F2MX": {
+        "tickValue": 1.00,
+        "valuePer": 5.00
+    },
+    "FTDX": {
+        "tickValue": 0.50,
+        "valuePer": 5.00
+    },
+    "FESX": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "FVS": {
+        "tickValue": 0.05,
+        "valuePer": 5.00
+    },
+    "FEXD": {
+        "tickValue": 0.10,
+        "valuePer": 10.00
+    },
+    "FSTX": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "FEXF": {
+        "tickValue": 0.50,
+        "valuePer": 5.00
+    },
+    "FXXP": {
+        "tickValue": 0.10,
+        "valuePer": 5.00
+    },
+    "FSMI": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "FSMM": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "AX": {
+        "tickValue": 0.50,
+        "valuePer": 5.00
+    },
+    "FRDX": {
+        "tickValue": 0.50,
+        "valuePer": 5.00
+    },
+    "ZAP": {
+        "tickValue": 0.10,
+        "valuePer": 10.00
+    },
+    "FMJP": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "FMCN": {
+        "tickValue": 0.10,
+        "valuePer": 5.00
+    },
+    "FMEL": {
+        "tickValue": 0.10,
+        "valuePer": 10.00
+    },
+    "FMWO": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "FMWN": {
+        "tickValue": 0.10,
+        "valuePer": 10.00
+    },
+    "FFI": {
+        "tickValue": 0.50,
+        "valuePer": 5.00
+    },
+    "FCE": {
+        "tickValue": 0.50,
+        "valuePer": 5.00
+    },
+    "AEX": {
+        "tickValue": 0.05,
+        "valuePer": 10.00
+    },
+    "OMX": {
+        "tickValue": 0.25,
+        "valuePer": 25.00
+    },
+    "IB": {
+        "tickValue": 1.00,
+        "valuePer": 10.00
+    },
+    "MFMI": {
+        "tickValue": 5.00,
+        "valuePer": 5.00
+    },
+    "SPMIB": {
+        "tickValue": 5.00,
+        "valuePer": 25.00
+    },
+    "IBV": {
+        "tickValue": 5.00,
+        "valuePer": 5.00
+    },
+    "NIY": {
+        "tickValue": 5.00,
+        "valuePer": 2500
+    },
+    "NKD": {
+        "tickValue": 5.00,
+        "valuePer": 25.0
+    },
+    "NK225": {
+        "tickValue": 10.00,
+        "valuePer": 10000
+    },
+    "NK225M": {
+        "tickValue": 5.00,
+        "valuePer": 500.0
+    },
+    "JPW": {
+        "tickValue": 5.00,
+        "valuePer": 500.0
+    },
+    "NI": {
+        "tickValue": 5.00,
+        "valuePer": 2500
+    },
+    "QZ": {
+        "tickValue": 0.50,
+        "valuePer": 5.0
+    },
+    "STW": {
+        "tickValue": 0.10,
+        "valuePer": 10.0
+    },
+    "IDO": {
+        "tickValue": 5.00,
+        "valuePer": 10.0
+    },
+    "MD": {
+        "tickValue": 0.20,
+        "valuePer": 10.0
+    },
+    "PH": {
+        "tickValue": 1.00,
+        "valuePer": 10.0
+    },
+    "IN": {
+        "tickValue": 0.50,
+        "valuePer": 1.0
+    },
+    "CNXU": {
+        "tickValue": 0.50,
+        "valuePer": 1.0
+    },
+    "EC": {
+        "tickValue": 0.00005,
+        "valuePer": 6.25
+    },
+    "E7": {
+        "tickValue": 0.0001,
+        "valuePer": 6.25
+    },
+    "M6E": {
+        "tickValue": 0.0001,
+        "valuePer": 1.25
+    },
+    "BP": {
+        "tickValue": 0.0001,
+        "valuePer": 6.25
+    },
+    "M6B": {
+        "tickValue": 0.0001,
+        "valuePer": 0.625
+    },
+    "SF": {
+        "tickValue": 0.0001,
+        "valuePer": 12.5
+    },
+    "MSF": {
+        "tickValue": 0.0001,
+        "valuePer": 1.25
+    },
+    "CD": {
+        "tickValue": 0.0001,
+        "valuePer": 10.0
+    },
+    "MCD": {
+        "tickValue": 0.0001,
+        "valuePer": 1.0
+    },
+    "AD": {
+        "tickValue": 0.0001,
+        "valuePer": 10.0
+    },
+    "M6A": {
+        "tickValue": 0.0001,
+        "valuePer": 1.0
+    },
+    "JY": {
+        "tickValue": 0.000001,
+        "valuePer": 12.5
+    },
+    "MJY": {
+        "tickValue": 0.000001,
+        "valuePer": 1.25
+    },
+    "MP": {
+        "tickValue": 0.000025,
+        "valuePer": 12.5
+    },
+    "NE": {
+        "tickValue": 0.0001,
+        "valuePer": 10.0
+    },
+    "6R": {
+        "tickValue": 0.00001,
+        "valuePer": 25.0
+    },
+    "RF": {
+        "tickValue": 0.0001,
+        "valuePer": 12.5
+    },
+    "RP": {
+        "tickValue": 0.00005,
+        "valuePer": 6.25
+    },
+    "RY": {
+        "tickValue": 0.01,
+        "valuePer": 1250
+    },
+    "PJY": {
+        "tickValue": 0.01,
+        "valuePer": 1250
+    },
+    "ECD": {
+        "tickValue": 0.0001,
+        "valuePer": 12.5
+    },
+    "EAD": {
+        "tickValue": 0.0001,
+        "valuePer": 12.5
+    },
+    "6L": {
+        "tickValue": 0.005,
+        "valuePer": 5.0
+    },
+    "RMB": {
+        "tickValue": 0.00001,
+        "valuePer": 10.0
+    },
+    "MNH": {
+        "tickValue": 0.0001,
+        "valuePer": 1.0
+    },
+    "RA": {
+        "tickValue": 0.000025,
+        "valuePer": 12.5
+    },
+    "SIR": {
+        "tickValue": 0.01,
+        "valuePer": 5.0
+    },
+    "MIR": {
+        "tickValue": 0.01,
+        "valuePer": 1.0
+    },
+    "NO": {
+        "tickValue": 0.00001,
+        "valuePer": 20.0
+    },
+    "SE": {
+        "tickValue": 0.00001,
+        "valuePer": 20.0
+    },
+    "DX": {
+        "tickValue": 0.005,
+        "valuePer": 5.0
+    },
+    "AJ": {
+        "tickValue": 0.01,
+        "valuePer": 250.0
+    },
+    "AU": {
+        "tickValue": 0.0001,
+        "valuePer": 2.5
+    },
+    "IU": {
+        "tickValue": 0.01,
+        "valuePer": 2.0
+    },
+    "KU": {
+        "tickValue": 0.0001,
+        "valuePer": 2.5
+    },
+    "US": {
+        "tickValue": 0.0001,
+        "valuePer": 2.5
+    },
+    "UC": {
+        "tickValue": 0.0001,
+        "valuePer": 10.0
+    },
+    "CUS": {
+        "tickValue": 0.0001,
+        "valuePer": 10.0
+    },
+    "UCN": {
+        "tickValue": 0.0001,
+        "valuePer": 3.0
+    },
+    "ZT": {
+        "tickValue": 0.0078125,
+        "valuePer": 15.625
+    },
+    "ZF": {
+        "tickValue": 0.0078125,
+        "valuePer": 7.8125
+    },
+    "ZN": {
+        "tickValue": 0.015625,
+        "valuePer": 15.625
+    },
+    "TN": {
+        "tickValue": 0.015625,
+        "valuePer": 15.625
+    },
+    "ZB": {
+        "tickValue": 0.03125,
+        "valuePer": 31.25
+    },
+    "UB": {
+        "tickValue": 0.03125,
+        "valuePer": 31.25
+    },
+    "N1U": {
+        "tickValue": 0.015625,
+        "valuePer": 15.625
+    },
+    "CN": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FGBS": {
+        "tickValue": 0.005,
+        "valuePer": 5.0
+    },
+    "FGBM": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FGBL": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FGBX": {
+        "tickValue": 0.02,
+        "valuePer": 20.0
+    },
+    "FBTP": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FBTS": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FB": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FOAT": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "BTA": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FBON": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "G": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "FLG": {
+        "tickValue": 0.01,
+        "valuePer": 10.0
+    },
+    "JGB1": {
+        "tickValue": 0.01,
+        "valuePer": 10000
+    },
+    "SJB": {
+        "tickValue": 0.01,
+        "valuePer": 1000
+    },
+    "YT": {
+        "tickValue": 0.005,
+        "valuePer": 14.05
+    },
+    "XT": {
+        "tickValue": 0.005,
+        "valuePer": 39.88
+    },
+    "LTY": {
+        "tickValue": 0.005,
+        "valuePer": 61.66
+    },
+    "ED": {
+        "tickValue": 0.0025,
+        "valuePer": 6.25
+    },
+    "FEI": {
+        "tickValue": 0.005,
+        "valuePer": 12.5
+    },
+    "FSS": {
+        "tickValue": 0.01,
+        "valuePer": 12.5
+    },
+    "FES": {
+        "tickValue": 0.01,
+        "valuePer": 25.0
+    },
+    "IBcash": {
+        "tickValue": 0.005,
+        "valuePer": 12.33
+    },
+    "IR": {
+        "tickValue": 0.01,
+        "valuePer": 24.06
+    },
+    "BAX": {
+        "tickValue": 0.01,
+        "valuePer": 25
+    },
+    "ZQ": {
+        "tickValue": 0.0025,
+        "valuePer": 10.4175
+    }
 }

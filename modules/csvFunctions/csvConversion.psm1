@@ -87,6 +87,6 @@ function Start-csvConversion {
 
         }
     }
-    return , $convertedTrade | Out-Null
+    return , $convertedTrade
 }
 
