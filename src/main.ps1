@@ -36,12 +36,12 @@ while ($true) {
         Write-Host "Cancelling..."
         return
     }
-    elseif ($fileBrowser.FileName -notmatch ".csv") {
+    elseif ($fileBrowser.FileNames | Where-Object {$_ -like ".csv"}) {
         Write-Host "The file selected is not a .csv filetype. Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
         Read-host
         continue
     }
-    elseif ($null -ne (Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $fileBrowser.FileName | Get-Member -MemberType NoteProperty).Name)) {
+    elseif ($fileBrowser.FileNames | Where-Object {$null -ne (Compare-Object -ReferenceObject $csvFormat -DifferenceObject (Import-Csv -Path $_ | Get-Member -MemberType NoteProperty).Name)}) {
         Write-Host "The .csv file selected has an incorrect header format, Headers must include the following:[" $csvFormat "]Press ENTER to continue. Press Ctrl+C to exit." -ForegroundColor Red
         Read-Host
         continue
