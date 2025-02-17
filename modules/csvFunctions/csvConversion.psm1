@@ -44,8 +44,8 @@ function Start-csvConversion {
             $symbolValue = $symbolList | Select-Object -ExpandProperty $symbol
 
             #PNL sum
-            $entryPrice = [int]($entryTrade | Select-Object -ExpandProperty 'Current Price')
-            $exitPrice = [int]($exitTrade | Select-Object -ExpandProperty 'Current Price')
+            $entryPrice = ($entryTrade | Select-Object -ExpandProperty 'Current Price')
+            $exitPrice = ($exitTrade | Select-Object -ExpandProperty 'Current Price')
             #determine action for +/-
             if ($entryTrade.Action -eq "buy") {
                 $pnl = ($exitPrice - $entryPrice) / $symbolValue.tickValue * $symbolValue.valuePer
